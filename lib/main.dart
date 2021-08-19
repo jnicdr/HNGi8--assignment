@@ -27,43 +27,47 @@ class _HomeState extends State<Home> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                controller: _name,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Name'),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('images/download.png'),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: TextField(
+                  controller: _name,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: 'Name'),
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                controller: _phonenumber,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Phone Number'),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                child: TextField(
+                  controller: _phonenumber,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: 'Phone Number'),
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                controller: _email,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Email'),
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                child: TextField(
+                  controller: _email,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), labelText: 'Email'),
+                ),
               ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => informationpage(
-                          name: _name.text,
-                          phonenumber: _phonenumber.text,
-                          email: _email.text)));
-                },
-                child: Text('Submit Info' ))
-          ],
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => informationpage(
+                            name: _name.text,
+                            phonenumber: _phonenumber.text,
+                            email: _email.text)));
+                  },
+                  child: Text('Submit Info' ))
+            ],
+          ),
         ),
       ),
     );
