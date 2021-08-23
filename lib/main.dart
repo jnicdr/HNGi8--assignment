@@ -1,5 +1,12 @@
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hnhi8_project1/informationpage.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() => runApp(const MaterialApp(
       home: Home(),
@@ -13,9 +20,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController _name = new TextEditingController();
-  TextEditingController _phonenumber = new TextEditingController();
-  TextEditingController _email = new TextEditingController();
+
+
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _phonenumber = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,38 +44,52 @@ class _HomeState extends State<Home> {
             children: [
               Image.asset('images/download.png'),
               Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: TextField(
                   controller: _name,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Name'),
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                child: TextField(
-                  controller: _phonenumber,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'Phone Number'),
-                ),
-              ),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                  child: IntlPhoneField(
+                    controller: _phonenumber,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Phone Number'),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    initialCountryCode: 'IN',
+                    onChanged: (phone) {
+                      print(phone.countryCode);
+                    },
+                  )),
               Container(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: TextField(
                   controller: _email,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Email'),
                 ),
               ),
+
+
+
+
               ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all(Colors.deepOrange)),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => informationpage(
+
                             name: _name.text,
                             phonenumber: _phonenumber.text,
                             email: _email.text)));
                   },
-                  child: Text('Submit Info' ))
+                  child: Text('Submit'))
             ],
           ),
         ),
