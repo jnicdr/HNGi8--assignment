@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hnhi8_project1/informationpage.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 void main() => runApp(const MaterialApp(
